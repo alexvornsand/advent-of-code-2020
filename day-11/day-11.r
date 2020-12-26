@@ -41,3 +41,32 @@ findSteadyGrid <- function(grid){
 }
 
 findSteadyGrid(grid)
+
+# part 2
+grid <- do.call(expand.grid, list(x = 1:97, y = 1:93))
+grid$value <- as.integer(gsub('L', 1, gsub('.', NA, unlist(strsplit(readLines('day-11.txt'), split = '')), fixed = T)))
+
+gridStateChange2 <- function(i, grid){
+  x <- grid$x[i]
+  y <- grid$y[i]
+  value <- grid$value[i]
+  i <- 1
+  N <- while()
+  if(is.na(value)){
+    return(NA)
+  } else if(value == 1){
+    if(neighbors >= 4){
+      return(0)
+    } else {
+      return(1)
+    }
+  } else {
+    if(neighbors == 0){
+      return(1)
+    } else {
+      return(0)
+    }
+  }
+}
+
+findSteadyGrid(grid)
