@@ -12,11 +12,11 @@ nextBus * min(waitTimes, na.rm = T)
 
 # part 2
 
- correctOffset <- function(t, rte, busRoutes = busRoutes){
+correctOffset <- function(t, rte, busRoutes = busRoutes){
   if(is.na(rte)){
     return(NA)
   } else {
-    return(t %% rte ==  rte - (which(busRoutes == rte) - 1))
+    return((t + which(busRoutes == rte) - 1) %% rte == 0)
   }
 }
 
@@ -25,7 +25,7 @@ while(T){
   print(t)
   inSequence <- unlist(sapply(busRoutes, correctOffset, t = t, busRoutes = busRoutes))
   if(all(inSequence, na.rm = T)){
-    print(as.string(t))
+    print(as.character(t))
     break
   } else {
     t <- t + prod(busRoutes[which(inSequence == T)])
