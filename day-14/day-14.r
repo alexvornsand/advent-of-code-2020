@@ -20,16 +20,16 @@ evaluateLine <- function(line, mem = mem){
     binSepRev[which(maskSepRev == '0')] <- 0
     binSepRev[which(maskSepRev == '1')] <- 1
     binSepRev[which(is.na(binSepRev))] <- 0
-    mem[n] <<- binToDec(rev(binSepRev))
+    mem[[as.character(n)]] <<- binToDec(rev(binSepRev))
   }
 }
 
-mem <- c()
+mem <- list()
 for(line in program){
   evaluateLine(line)
 }
 
-as.character(sum(mem, na.rm = T))
+as.character(sum(unlist(mem), na.rm = T))
 
 # part 2
 generateAddresses <- function(binAddress, mask){
@@ -52,7 +52,7 @@ generateAddresses <- function(binAddress, mask){
 
 writeToAddress <- function(address, val){
   decAddress <- binToDec(as.integer(address))
-  mem[decAddress] <<- val
+  mem[[as.character(decAddress)]] <<- val
 }
 
 evaluateLine <- function(line, mem = mem){
@@ -68,12 +68,12 @@ evaluateLine <- function(line, mem = mem){
   }
 }
 
-mem <- c()
+mem <- list()
 for(line in program){
   evaluateLine(line)
 }
 
-as.character(sum(mem, na.rm = T))
+as.character(sum(unlist(mem), na.rm = T))
 
 
 
