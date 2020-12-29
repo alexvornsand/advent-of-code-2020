@@ -2,7 +2,7 @@
 # day 9
 
 # part 1
-numbers <- as.numeric(readLines('day-9.txt'))
+numbers <- as.numeric(readLines('day-09.txt'))
 
 findPair <- function(i, nums){
   nums <- nums[(i-25):i]
