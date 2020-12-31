@@ -47,8 +47,13 @@ evaluateProblem <- function(prob){
     prob <- gsub(interiorSection, interiorSolution, prob, fixed = T)
     return(evaluateProblem(prob))
   } else {
-    return(eval(parse(text = prob)))
+    answer <- eval(parse(text = prob))
+    return(answer)
   }
 }
 
-as.character(sum(sapply(problems, evaluateProblem)))
+solutions <- sapply(problems, evaluateProblem)
+names(solutions) <- NULL
+as.character(sum(solutions))
+
+as.character(solutions)
