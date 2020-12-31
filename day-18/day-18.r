@@ -29,3 +29,26 @@ evaluateProblem <- function(prob){
 }
 
 as.character(sum(unlist(sapply(problems, evaluateProblem))))
+
+# part 2
+evaluateProblem <- function(prob){
+  if('(' %in% unlist(strsplit(prob, split = ''))){
+    start <- regexpr(pattern = '\\((\\d*\\s(\\*|\\+)\\s)*\\d*)', prob)[1]
+    end <- start + attr(regexpr(pattern = '\\((\\d*\\s(\\*|\\+)\\s)*\\d*)', prob), "match.length") - 1
+    interiorSection <- paste(unlist(strsplit(prob, split = ''))[(start + 1):(end - 1)], collapse = '')
+    interiorSolution <- evaluateProblem(interiorSection)
+    prob <- gsub(paste('(', interiorSection, ')', sep = ''), interiorSolution, prob, fixed = T)
+    return(evaluateProblem(prob))
+  } else if('+' %in% unlist(strsplit(prob, split = ''))){
+    start <- regexpr(pattern = '\\d*\\s\\+\\s\\d*', prob)[1]
+    end <- start + attr(regexpr(pattern = '\\d*\\s\\+\\s\\d*', prob), "match.length") - 1
+    interiorSection <- paste(unlist(strsplit(prob, split = ''))[(start):(end)], collapse = '')
+    interiorSolution <- eval(parse(text = interiorSection))
+    prob <- gsub(interiorSection, interiorSolution, prob, fixed = T)
+    return(evaluateProblem(prob))
+  } else {
+    return(eval(parse(text = prob)))
+  }
+}
+
+as.character(sum(sapply(problems, evaluateProblem)))
