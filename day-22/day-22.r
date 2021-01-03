@@ -51,10 +51,9 @@ playRecursiveCombat <- function(handA, handB){
       }
     }
   }
-  return(c(which(unlist(lapply(hands, length)) == max(unlist(lapply(hands, length)))), sum(as.integer(rev(c(handA, handB))) * as.integer(which(rev(c(handA, handB)) == rev(c(handA, handB)))))))
+  gameWinner <- which(c(length(handA) != 0, length(handB) != 0))
+  winnerScore <- sum(as.integer(rev(c(handA, handB))) * as.integer(which(rev(c(handA, handB)) == rev(c(handA, handB)))))
+  return(c(gameWinner, winnerScore))
 }
 
 playRecursiveCombat(handA, handB)
-
-
-
