@@ -3,70 +3,212 @@
 
 # part 1
 library(pbapply)
-grid <- do.call(expand.grid, list(x = 1:97, y = 1:93))
-grid$value <- as.integer(gsub('L', 1, gsub('.', NA, unlist(strsplit(readLines('day-11.txt'), split = '')), fixed = T)))
 
-gridStateChange <- function(i, grid){
-  x <- grid$x[i]
-  y <- grid$y[i]
-  value <- grid$value[i]
-  neighbors <- sum(sum(merge(do.call(expand.grid, list(x = (x-1):(x+1), y = (y-1):(y+1))), grid, by = c('x', 'y'), all = F)$value, na.rm = T), -value, na.rm = T)
-  if(is.na(value)){
-    return(NA)
-  } else if(value == 1){
-    if(neighbors >= 4){
-      return(0)
+input <- readLines('day-11.txt')
+
+fillSeats <- function(input, partTwo = F){
+  seatGrid <- do.call(expand.grid, list('column' = 1:nchar(input[1]), 'row' = 1:length(input)))
+  seatGrid$status <- as.integer(gsub('L', 0, gsub('\\.', NA, unlist(strsplit(input, split = '')))))
+  findNewSeats <- function(seat, partTwo){
+    column <- seat[[1]]
+    row <- seat[[2]]
+    status <- seat[[3]]
+    if(partTwo == T){
+      NE <- c()
+      i <- 1
+      while(is.null(NE)){
+        if(length(which(seatGrid$column == column + i & seatGrid$row == row + i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column + i & seatGrid$row == row + i), 'status'])){
+            i <- i + 1
+          } else {
+            NE <- seatGrid[which(seatGrid$column == column + i & seatGrid$row == row + i), 'status']
+          }
+        } else {
+          NE <- NA
+        }
+      }
+      E <- c()
+      i <- 1
+      while(is.null(E)){
+        if(length(which(seatGrid$column == column + i & seatGrid$row == row)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column + i & seatGrid$row == row), 'status'])){
+            i <- i + 1
+          } else {
+            E <- seatGrid[which(seatGrid$column == column + i & seatGrid$row == row), 'status']
+          }
+        } else {
+          E <- NA
+        }
+      }
+      SE <- c()
+      i <- 1
+      while(is.null(SE)){
+        if(length(which(seatGrid$column == column + i & seatGrid$row == row - i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column + i & seatGrid$row == row - i), 'status'])){
+            i <- i + 1
+          } else {
+            SE <- seatGrid[which(seatGrid$column == column + i & seatGrid$row == row - i), 'status']
+          }
+        } else {
+          SE <- NA
+        }
+      }
+      S <- c()
+      i <- 1
+      while(is.null(S)){
+        if(length(which(seatGrid$column == column & seatGrid$row == row - i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column & seatGrid$row == row - i), 'status'])){
+            i <- i + 1
+          } else {
+            S <- seatGrid[which(seatGrid$column == column & seatGrid$row == row - i), 'status']
+          }
+        } else {
+          S <- NA
+        }
+      }
+      SW <- c()
+      i <- 1
+      while(is.null(SW)){
+        if(length(which(seatGrid$column == column - i & seatGrid$row == row - i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column - i & seatGrid$row == row - i), 'status'])){
+            i <- i + 1
+          } else {
+            SW <- seatGrid[which(seatGrid$column == column - i & seatGrid$row == row - i), 'status']
+          }
+        } else {
+          SW <- NA
+        }
+      }
+      W <- c()
+      i <- 1
+      while(is.null(W)){
+        if(length(which(seatGrid$column == column - i & seatGrid$row == row)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column - i & seatGrid$row == row), 'status'])){
+            i <- i + 1
+          } else {
+            W <- seatGrid[which(seatGrid$column == column - i & seatGrid$row == row), 'status']
+          }
+        } else {
+          W <- NA
+        }
+      }
+      NW <- c()
+      i <- 1
+      while(is.null(NW)){
+        if(length(which(seatGrid$column == column - i & seatGrid$row == row + i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column - i & seatGrid$row == row + i), 'status'])){
+            i <- i + 1
+          } else {
+            NW <- seatGrid[which(seatGrid$column == column - i & seatGrid$row == row + i), 'status']
+          }
+        } else {
+          NW <- NA
+        }
+      }
+      N <- c()
+      i <- 1
+      while(is.null(N)){
+        if(length(which(seatGrid$column == column & seatGrid$row == row + i)) == 1){
+          if(is.na(seatGrid[which(seatGrid$column == column & seatGrid$row == row + i), 'status'])){
+            i <- i + 1
+          } else {
+            N <- seatGrid[which(seatGrid$column == column & seatGrid$row == row + i), 'status']
+          }
+        } else {
+          N <- NA
+        }
+      }
     } else {
-      return(1)
+      NE <- ifelse(
+        length(which(seatGrid$column == column + 1 & seatGrid$row == row + 1)) == 1, 
+        seatGrid[which(seatGrid$column == column + 1 & seatGrid$row == row + 1), 'status'],
+        NA
+      )
+      E <- ifelse(
+        length(which(seatGrid$column == column + 1 & seatGrid$row == row)) == 1, 
+        seatGrid[which(seatGrid$column == column + 1 & seatGrid$row == row), 'status'],
+        NA
+      )
+      SE <- ifelse(
+        length(which(seatGrid$column == column + 1 & seatGrid$row == row - 1)) == 1, 
+        seatGrid[which(seatGrid$column == column + 1 & seatGrid$row == row - 1), 'status'],
+        NA
+      )
+      S <- ifelse(
+        length(which(seatGrid$column == column & seatGrid$row == row - 1)) == 1, 
+        seatGrid[which(seatGrid$column == column & seatGrid$row == row - 1), 'status'],
+        NA
+      )
+      SW <- ifelse(
+        length(which(seatGrid$column == column - 1 & seatGrid$row == row - 1)) == 1, 
+        seatGrid[which(seatGrid$column == column - 1 & seatGrid$row == row - 1), 'status'],
+        NA
+      )
+      W <- ifelse(
+        length(which(seatGrid$column == column - 1 & seatGrid$row == row)) == 1, 
+        seatGrid[which(seatGrid$column == column - 1 & seatGrid$row == row), 'status'],
+        NA
+      )
+      NW <- ifelse(
+        length(which(seatGrid$column == column - 1 & seatGrid$row == row + 1)) == 1, 
+        seatGrid[which(seatGrid$column == column - 1 & seatGrid$row == row + 1), 'status'],
+        NA
+      )
+      N <- ifelse(
+        length(which(seatGrid$column == column & seatGrid$row == row + 1)) == 1, 
+        seatGrid[which(seatGrid$column == column & seatGrid$row == row + 1), 'status'],
+        NA
+      )
     }
-  } else {
-    if(neighbors == 0){
-      return(1)
-    } else {
-      return(0)
-    }
+    neighbors <- c(NE, E, SE, S, SW, W, NW, N)
+    newSeatStatus <- ifelse(
+      partTwo == T,
+      ifelse(
+        is.na(status),
+        NA,
+        ifelse(
+          status == 0,
+          ifelse(
+            sum(neighbors, na.rm = T) == 0,
+            1,
+            0
+          ),
+          ifelse(
+            sum(neighbors, na.rm = T) >= 5,
+            0,
+            1
+          )
+        )
+      ),
+      ifelse(
+        is.na(status),
+        NA,
+        ifelse(
+          status == 0,
+          ifelse(
+            sum(neighbors, na.rm = T) == 0,
+            1,
+            0
+          ),
+          ifelse(
+            sum(neighbors, na.rm = T) >= 4,
+            0,
+            1
+          )
+        )
+      )
+    )
+    return(newSeatStatus)
   }
+  newSeats <- apply(seatGrid, 1, findNewSeats, partTwo = partTwo)
+  while(!identical(seatGrid$status, newSeats)){
+    seatGrid$status <- newSeats
+    newSeats <- apply(seatGrid, 1, findNewSeats, partTwo = partTwo)
+  }
+  return(sum(seatGrid$status, na.rm = T))
 }
 
-findSteadyGrid <- function(grid){
-  oldGrid <- cbind(do.call(expand.grid, list(x = 1:97, y = 1:93)), NA)
-  newGrid <- grid
-  while(!identical(oldGrid, newGrid)){
-    oldGrid <- newGrid
-    newGridValues <- unlist(pbsapply(1:nrow(oldGrid), gridStateChange, grid = oldGrid))
-    newGrid <- oldGrid
-    newGrid$value <- newGridValues
-  }
-  return(sum(newGrid$value, na.rm = T))
-}
-
-findSteadyGrid(grid)
+fillSeats(input)
 
 # part 2
-grid <- do.call(expand.grid, list(x = 1:97, y = 1:93))
-grid$value <- as.integer(gsub('L', 1, gsub('.', NA, unlist(strsplit(readLines('day-11.txt'), split = '')), fixed = T)))
-
-gridStateChange2 <- function(i, grid){
-  x <- grid$x[i]
-  y <- grid$y[i]
-  value <- grid$value[i]
-  i <- 1
-  N <- while()
-  if(is.na(value)){
-    return(NA)
-  } else if(value == 1){
-    if(neighbors >= 4){
-      return(0)
-    } else {
-      return(1)
-    }
-  } else {
-    if(neighbors == 0){
-      return(1)
-    } else {
-      return(0)
-    }
-  }
-}
-
-findSteadyGrid(grid)
+fillSeats(input, partTwo = T)
