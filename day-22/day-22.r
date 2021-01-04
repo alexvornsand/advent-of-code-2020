@@ -38,7 +38,7 @@ playRecursiveCombat <- function(handA, handB){
       p1card <- as.integer(handA[1])
       p2card <- as.integer(handB[1])
       if(as.integer(p1card) <= length(handA) - 1 & as.integer(p2card) <= length(handB) - 1){
-        winner <- playRecursiveCombat(handA[2:(p1car + 1)], handB[2:(p2card + 1)])[1]
+        winner <- playRecursiveCombat(handA[2:(p1card + 1)], handB[2:(p2card + 1)])[1]
       } else {
         winner <- which(c(p1card > p2card, p1card < p2card))
       }
