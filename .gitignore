@@ -43,3 +43,6 @@ vignettes/*.pdf
 
 # Python Virtual Environment
 /venv/
+
+# Spreadsheet
+*.xlsx
