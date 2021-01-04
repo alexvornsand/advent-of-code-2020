@@ -2,15 +2,14 @@
 # day 3
 
 # part 1
-map <- readLines('day-3.txt')
+library(tictoc)
+input <- readLines('day-03.txt')
 
-binaryMap <- function(str){
-  return(1 * (unlist(strsplit(str, split = '')) == '#'))
-}
-
-bMap <- matrix(sapply(map, binaryMap), ncol = 31, byrow = T)
-
-traverseMap <- function(xDelta, yDelta){
+traverseMap <- function(input, xDelta, yDelta){
+  binaryMap <- function(str){
+    return(1 * (unlist(strsplit(str, split = '')) == '#'))
+  }
+  bMap <- matrix(sapply(input, binaryMap), ncol = 31, byrow = T)
   x <- 1
   y <- 1
   trees <- 0
@@ -26,7 +25,11 @@ traverseMap <- function(xDelta, yDelta){
   return(trees)
 }
 
-traverseMap(3, 1)
+tictoc::tic()
+traverseMap(input, 3, 1)
+tictoc::toc()
 
 # part 2
-traverseMap(1, 1) * traverseMap(3, 1) * traverseMap(5, 1) * traverseMap(7, 1) * traverseMap(1, 2)
+tictoc::tic()
+traverseMap(input, 1, 1) * traverseMap(input, 3, 1) * traverseMap(input, 5, 1) * traverseMap(input, 7, 1) * traverseMap(input, 1, 2)
+tictoc::toc()
