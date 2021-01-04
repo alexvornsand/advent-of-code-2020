@@ -3,7 +3,7 @@
 
 # part 1
 
-passports <- gsub('\n', ' ', unlist(strsplit(paste(readLines('day-4.txt'), collapse = '\n'), split = '\n\n')))
+passports <- gsub('\n', ' ', unlist(strsplit(paste(readLines('day-04.txt'), collapse = '\n'), split = '\n\n')))
 
 evaluatePassport <- function(pp){
   kvs <- unlist(strsplit(pp, split = ' '))
