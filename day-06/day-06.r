@@ -2,17 +2,28 @@
 # day 6
 
 # part 1
-declarations <- strsplit(gsub('\n', ' ', unlist(strsplit(paste(readLines('day-6.txt'), collapse = '\n'), split = '\n\n'))), split = ' ')
+library(tictoc)
 
-countDeclarations <- function(dec){
-  return(length(unique(unlist(strsplit(paste(dec, collapse = ''), split = '')))))
+input <- readLines('day-06.txt')
+
+countDeclarations <- function(input, partTwo = F){
+  declarations <- strsplit(gsub('\n', ' ', unlist(strsplit(paste(input, collapse = '\n'), split = '\n\n'))), split = ' ')
+  countDeclarations <- function(dec, partTwo){
+    if(partTwo == T){
+      return(length(names(which(table(unlist(strsplit(paste(dec, collapse = ''), split = ''))) == length(dec)))))
+    } else {
+      return(length(unique(unlist(strsplit(paste(dec, collapse = ''), split = '')))))
+    }
+  }
+  return(sum(unlist(sapply(declarations, countDeclarations, partTwo = partTwo))))
 }
 
-sum(unlist(sapply(declarations, countDeclarations)))
+tictoc::tic()
+countDeclarations(input)
+tictoc::toc()
 
 # part 2
-countDeclarations <- function(dec){
-  return(length(names(which(table(unlist(strsplit(paste(dec, collapse = ''), split = ''))) == length(dec)))))
-}
+tictoc::tic()
+countDeclarations(input, partTwo = T)
+tictoc::toc()
 
-sum(unlist(sapply(declarations, countDeclarations)))
