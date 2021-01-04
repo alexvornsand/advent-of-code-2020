@@ -1,10 +1,9 @@
 # advent of code
 # day 15
 
-# part 1 & 2
+# part 1
 import sys
 import time
-start_time = time.time()
 
 input = [9, 12, 1, 4, 17, 0, 18]
 
@@ -23,9 +22,13 @@ def play(end):
             next = 0
     print(last)
 
-if(len(sys.argv) == 2):
-    play(int(sys.argv[1]))
-else:
-    play(2020)
+start_time = time.time()
+play(2020)
+end_time = time.time()
+print('%s seconds' % (end_time - start_time))
 
-print("--- %s seconds ---" % (time.time() - start_time))
+# part 2
+start_time = time.time()
+play(30000000)
+end_time = time.time()
+print('%s seconds' % (end_time - start_time))
