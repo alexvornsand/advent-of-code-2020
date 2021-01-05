@@ -10,6 +10,6 @@ A place for me to attempt 2020's [Advent of Code](https://adventofcode.com/2020/
 | Dec. 5 | [R](/day-03/day-05.r) (0.213s) | [R](/day-05/day-05.r) (0.187s) || Dec. 14 | [R](/day-14/day-14.r) | [R](/day-14/day-14.r) || Dec. 23 | [R](/day-23/day-23.r) | [R](/day-23/day-23.r) |
 | Dec. 6 | [R](/day-03/day-06.r) (0.023s) | [R](/day-06/day-06.r) (0.105s) || Dec. 15 | [Py](/day-15/day-15.py) (0.001s) | [Py](/day-15/day-15.py) (14.866s) || Dec. 24 | [R](/day-24/day-24.r) |  |
 | Dec. 7 | [R](/day-03/day-07.r) (5.22s) | [R](/day-07/day-07.r) (0.169s) || Dec. 16 | [R](/day-16/day-16.r) | [R](/day-16/day-16.r) || Dec. 25 | [R](/day-25/day-03.r) | [R](/day-25/day-25.r) |
-| Dec. 8 | [R](/day-03/day-08.r) | [R](/day-08/day-08.r) || Dec. 17 | [R](/day-17/day-17.r) | [R](/day-17/day-17.r) ||  |  |  |
+| Dec. 8 | [R](/day-03/day-08.r) (0.108s) | [R](/day-08/day-08.r) (0.278s) || Dec. 17 | [R](/day-17/day-17.r) | [R](/day-17/day-17.r) ||  |  |  |
 | Dec. 9 | [R](/day-03/day-09.r) | [R](/day-09/day-09.r) || Dec. 18 | [R](/day-18/day-18.r) | [R](/day-18/day-18.r) ||  |  |  |
 ||||||||| Total:| 39m | 21.006s |
