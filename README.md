@@ -3,7 +3,7 @@ A place for me to attempt 2020's [Advent of Code](https://adventofcode.com/2020/
 
 | Day        | Part 1                         | Part 2                         || Day         | Part 1                         | Part 2                         || Day         | Part 1                         | Part 2                         |
 |:-----------|-------------------------------:|----------------------------:|---|:------------|-------------------------------:|----------------------------:|---|:------------|-------------------------------:|-------------------------------:|
-| [1 (R)](/solutions/day-01/day-01.r) | 807\mu s | (0.123s) || 10 | [R](/day-10/day-10.r) | [R](/day-10/day-10.r) || 19 | [R](/day-19/day-19.r) | [R](/day-19/day-19.r) |
+| [1 (R)](/solutions/day-01/day-01.r) | 807&mu s | (0.123s) || 10 | [R](/day-10/day-10.r) | [R](/day-10/day-10.r) || 19 | [R](/day-19/day-19.r) | [R](/day-19/day-19.r) |
 | [2 (R)](/solutions/day-02/day-02.r) | (0.365s) | (0.395s) || [11 (R)](/solutions/day-11/day-11.r) | (818.22s) | (1520.9s) || 20 | [R](/day-20/day-20.r) |  |
 | [3 (R)](/solutions/day-03/day-03.r) | (0.003s) | (0.025s) || 12 | [R](/day-12/day-12.r) | [R](/day-12/day-12.r) || 21 | [R](/day-21/day-21.r) | [R](/day-21/day-21.r) |
 | [4 (R)](/solutions/day-04/day-04.r) | (0.085s) | (0.052s) || 13 | [R](/day-13/day-13.r) | [R](/day-13/day-13.r) || 22 | [R](/day-22/day-22.r) | [R](/day-22/day-22.r) |
