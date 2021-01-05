@@ -2,8 +2,6 @@
 # day 7
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-07.txt')
 
 countBags <- function(input, partTwo = F){
@@ -45,7 +43,7 @@ countBags <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(countBags(input))
+countBags(input)
 
 # part 2
-microbenchmark(countBags(input, partTwo = T))
+countBags(input, partTwo = T)
