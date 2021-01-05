@@ -2,8 +2,6 @@
 # day 12
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-12.txt')
 
 getManhattanDistance <- function(input, partTwo = F){
@@ -80,8 +78,8 @@ getManhattanDistance <- function(input, partTwo = F){
   return(abs(xpos) + abs(ypos))
 }
 
-microbenchmark(getManhattanDistance(input))
+getManhattanDistance(input)
 
 # part 2
-microbenchmark(getManhattanDistance(input, partTwo = T))
+getManhattanDistance(input, partTwo = T)
 
