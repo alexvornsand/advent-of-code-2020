@@ -2,7 +2,7 @@
 # day 2
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 input <- readLines('day-02.txt')
 
 countValidPasswords <- function(passwordData, partTwo = F){
@@ -19,11 +19,7 @@ countValidPasswords <- function(passwordData, partTwo = F){
   return(sum(sapply(passwordData, evaluatePassword, partTwo = partTwo)))
 }
 
-tictoc::tic()
-countValidPasswords(input)
-tictoc::toc()
+microbenchmark(countValidPasswords(input))
 
 # part 2
-tictoc::tic()
-countValidPasswords(passwordData, partTwo = T)
-tictoc::toc()
+microbenchmark(countValidPasswords(input, partTwo = T))
