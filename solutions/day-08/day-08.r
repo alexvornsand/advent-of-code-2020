@@ -2,7 +2,7 @@
 # day 8
 
 # part 1
-libraru(tictoc)
+library(microbenchmark)
 
 input <- readLines('day-08.txt')
 
@@ -60,13 +60,9 @@ findAccumulator <- function(input, partTwo = F){
   }
 }
 
-tictoc::tic()
-findAccumulator(input)
-tictoc::toc()
+microbenchmark(findAccumulator(input))
 
 # part 2
-tictoc::tic()
-findAccumulator(input, partTwo = T)
-tictoc::toc()
+microbenchmark(findAccumulator(input, partTwo = T))
 
 
