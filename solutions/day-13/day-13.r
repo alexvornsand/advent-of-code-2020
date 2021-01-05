@@ -2,8 +2,6 @@
 # day 13
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-13.txt')
 
 trackBuses <- function(input, partTwo = F){
@@ -33,7 +31,7 @@ trackBuses <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(trackBuses(input), unit = c('us'))
+trackBuses(input), unit = c('us')
 
 # part 2
-microbenchmark(trackBuses(input, partTwo = T))
+trackBuses(input, partTwo = T)
