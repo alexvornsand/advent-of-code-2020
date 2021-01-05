@@ -2,7 +2,7 @@
 # day 1
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 numbers <- scan('day-01.txt')
 
 findProduct <- function(numbers, partTwo = F){
@@ -19,7 +19,7 @@ findProduct <- function(numbers, partTwo = F){
       for(j in i:length(numbers)){
         for(k in j:length(numbers)){
           if(numbers[i] + numbers[j] + numbers[k] == 2020){
-            print(numbers[i] * numbers[j] * numbers[k])
+            return(numbers[i] * numbers[j] * numbers[k])
           }
         }
       }
@@ -27,13 +27,9 @@ findProduct <- function(numbers, partTwo = F){
   }
 }
 
-tictoc::tic()
-findProduct(numbers)
-tictoc::toc()
+microbenchmark(findProduct(numbers))
 
 # part 2
-tictoc::tic()
-findProduct(numbers, partTwo = T)
-tictoc::toc()
+microbenchmark(findProduct(numbers, partTwo = T))
 
 
