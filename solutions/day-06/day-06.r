@@ -2,7 +2,7 @@
 # day 6
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 
 input <- readLines('day-06.txt')
 
@@ -18,12 +18,8 @@ countDeclarations <- function(input, partTwo = F){
   return(sum(unlist(sapply(declarations, countDeclarations, partTwo = partTwo))))
 }
 
-tictoc::tic()
-countDeclarations(input)
-tictoc::toc()
+microbenchmark(countDeclarations(input))
 
 # part 2
-tictoc::tic()
-countDeclarations(input, partTwo = T)
-tictoc::toc()
+microbenchmark(countDeclarations(input, partTwo = T))
 
