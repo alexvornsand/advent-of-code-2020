@@ -2,7 +2,6 @@
 # day 3
 
 # part 1
-library(microbenchmark)
 input <- readLines('day-03.txt')
 
 traverseMap <- function(input, xDelta, yDelta){
@@ -25,7 +24,7 @@ traverseMap <- function(input, xDelta, yDelta){
   return(trees)
 }
 
-microbenchmark(traverseMap(input, 3, 1))
+traverseMap(input, 3, 1)
 
 # part 2
-microbenchmark(traverseMap(input, 1, 1) * traverseMap(input, 3, 1) * traverseMap(input, 5, 1) * traverseMap(input, 7, 1) * traverseMap(input, 1, 2))
+traverseMap(input, 1, 1) * traverseMap(input, 3, 1) * traverseMap(input, 5, 1) * traverseMap(input, 7, 1) * traverseMap(input, 1, 2)
