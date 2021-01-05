@@ -3,7 +3,7 @@
 
 # part 1
 library(compositions)
-library(tictoc)
+library(microbenchmark)
 
 input <- readLines('day-05.txt')
 
@@ -27,11 +27,7 @@ findSeatID <- function(input, partTwo = F){
   }
 }
 
-tictoc::tic()
-findSeatID(input)
-tictoc::toc()
+microbenchmark(findSeatID(input))
 
 # part 2
-tictoc::tic()
-findSeatID(input, partTwo = T)
-tictoc::toc()
+microbenchmark(findSeatID(input, partTwo = T))
