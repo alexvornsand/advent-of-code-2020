@@ -2,32 +2,38 @@
 # day 13
 
 # part 1
-departureTime <- as.integer(readLines('day-13.txt')[1])
-busRoutes <- as.integer(unlist(strsplit(readLines('day-13.txt')[2], split = ',')))
+library(microbenchmark)
 
-waitTimes <- busRoutes - (departureTime %% busRoutes)
-nextBus <- busRoutes[which(waitTimes == min(waitTimes, na.rm = T))]
+input <- readLines('day-13.txt')
 
-nextBus * min(waitTimes, na.rm = T)
+trackBuses <- function(input, partTwo = F){
+  departureTime <- as.integer(input[1])
+  busRoutes <- suppressWarnings(as.integer(unlist(strsplit(input[2], split = ','))))
+  if(partTwo == F){
+    waitTimes <- busRoutes - (departureTime %% busRoutes)
+    nextBus <- busRoutes[which(waitTimes == min(waitTimes, na.rm = T))]
+    return(nextBus * min(waitTimes, na.rm = T))
+  } else {
+    correctOffSet <- function(t, rte, busRoutes){
+      if(is.na(rte)){
+        return(NA)
+      } else {
+        return((t + which(busRoutes == rte) - 1) %% rte == 0)
+      }
+    }
+    t <- 0
+    while(T){
+      inSequence <- unlist(sapply(busRoutes, correctOffSet, t = t, busRoutes = busRoutes))
+      if(all(inSequence, na.rm = T)){
+        return(as.character(t))
+      } else {
+        t <- t + prod(busRoutes[which(inSequence == T)])
+      }
+    }
+  }
+}
+
+microbenchmark(trackBuses(input), unit = c('us'))
 
 # part 2
-
-correctOffset <- function(t, rte, busRoutes = busRoutes){
-  if(is.na(rte)){
-    return(NA)
-  } else {
-    return((t + which(busRoutes == rte) - 1) %% rte == 0)
-  }
-}
-
-t <- 0
-while(T){
-  print(t)
-  inSequence <- unlist(sapply(busRoutes, correctOffset, t = t, busRoutes = busRoutes))
-  if(all(inSequence, na.rm = T)){
-    print(as.character(t))
-    break
-  } else {
-    t <- t + prod(busRoutes[which(inSequence == T)])
-  }
-}
+microbenchmark(trackBuses(input, partTwo = T))
