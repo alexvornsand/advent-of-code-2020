@@ -2,8 +2,6 @@
 # day 8
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-08.txt')
 
 findAccumulator <- function(input, partTwo = F){
@@ -60,9 +58,7 @@ findAccumulator <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(findAccumulator(input))
+findAccumulator(input)
 
 # part 2
-microbenchmark(findAccumulator(input, partTwo = T))
-
-
+findAccumulator(input, partTwo = T)
