@@ -2,7 +2,7 @@
 # day 9
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 
 input <- readLines('day-09.txt')
 
@@ -43,11 +43,7 @@ findEncription <- function(input, partTwo = F){
   }
 }
 
-tictoc::tic()
-findEncription(input)
-tictoc::toc()
+microbenchmark(findEncription(input))
 
 # part 2
-tictoc::tic()
-findEncription(input, partTwo = T)
-tictoc::toc()
+microbenchmark(findEncription(input, partTwo = T))
