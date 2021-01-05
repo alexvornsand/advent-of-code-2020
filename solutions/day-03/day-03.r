@@ -2,7 +2,7 @@
 # day 3
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 input <- readLines('day-03.txt')
 
 traverseMap <- function(input, xDelta, yDelta){
@@ -25,11 +25,7 @@ traverseMap <- function(input, xDelta, yDelta){
   return(trees)
 }
 
-tictoc::tic()
-traverseMap(input, 3, 1)
-tictoc::toc()
+microbenchmark(traverseMap(input, 3, 1))
 
 # part 2
-tictoc::tic()
-traverseMap(input, 1, 1) * traverseMap(input, 3, 1) * traverseMap(input, 5, 1) * traverseMap(input, 7, 1) * traverseMap(input, 1, 2)
-tictoc::toc()
+microbenchmark(traverseMap(input, 1, 1) * traverseMap(input, 3, 1) * traverseMap(input, 5, 1) * traverseMap(input, 7, 1) * traverseMap(input, 1, 2))
