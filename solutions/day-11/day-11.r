@@ -2,6 +2,7 @@
 # day 11
 
 # part 1
+library(microbenchmark)
 library(pbapply)
 
 input <- readLines('day-11.txt')
@@ -208,7 +209,7 @@ fillSeats <- function(input, partTwo = F){
   return(sum(seatGrid$status, na.rm = T))
 }
 
-fillSeats(input)
+microbenchmark(fillSeats(input), times = 10)
 
 # part 2
-fillSeats(input, partTwo = T)
+microbenchmark(fillSeats(input, partTwo = T), times = 10)
