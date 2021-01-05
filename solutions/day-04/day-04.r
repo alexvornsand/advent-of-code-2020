@@ -2,7 +2,6 @@
 # day 4
 
 # part 1
-library(microbenchmark)
 input <- readLines('day-04.txt')
 
 countValidPassports <- function(input, partTwo = F){
@@ -50,8 +49,8 @@ countValidPassports <- function(input, partTwo = F){
   return(sum(unlist(sapply(passports, evaluatePassport, partTwo = partTwo))))
 }
 
-microbenchmark(countValidPassports(input))
+countValidPassports(input)
 
 # part 2
-microbenchmark(countValidPassports(input, partTwo = T))
+countValidPassports(input, partTwo = T)
 
