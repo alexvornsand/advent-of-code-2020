@@ -2,7 +2,6 @@
 # day 2
 
 # part 1
-library(microbenchmark)
 input <- readLines('day-02.txt')
 
 countValidPasswords <- function(passwordData, partTwo = F){
@@ -19,7 +18,7 @@ countValidPasswords <- function(passwordData, partTwo = F){
   return(sum(sapply(passwordData, evaluatePassword, partTwo = partTwo)))
 }
 
-microbenchmark(countValidPasswords(input))
+countValidPasswords(input)
 
 # part 2
-microbenchmark(countValidPasswords(input, partTwo = T))
+countValidPasswords(input, partTwo = T)
