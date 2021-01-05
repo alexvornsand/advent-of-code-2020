@@ -2,8 +2,6 @@
 # day 10
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-10.txt')
 
 findJoltage <- function(input, partTwo = F){
@@ -41,8 +39,8 @@ findJoltage <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(findJoltage(input))
+findJoltage(input)
 
 # part 2
-microbenchmark(findJoltage(input, partTwo = T))
+findJoltage(input, partTwo = T)
 
