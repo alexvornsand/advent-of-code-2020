@@ -2,7 +2,7 @@
 # day 4
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 input <- readLines('day-04.txt')
 
 countValidPassports <- function(input, partTwo = F){
@@ -50,12 +50,8 @@ countValidPassports <- function(input, partTwo = F){
   return(sum(unlist(sapply(passports, evaluatePassport, partTwo = partTwo))))
 }
 
-tictoc::tic()
-countValidPassports(input)
-tictoc::toc()
+microbenchmark(countValidPassports(input))
 
 # part 2
-tictoc::tic()
-countValidPassports(input, partTwo = T)
-tictoc::toc()
+microbenchmark(countValidPassports(input, partTwo = T))
 
