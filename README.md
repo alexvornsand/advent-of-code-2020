@@ -11,5 +11,4 @@ A place for me to attempt 2020's [Advent of Code](https://adventofcode.com/2020/
 | 6 | [R](/day-03/day-06.r) (0.023s) | [R](/day-06/day-06.r) (0.105s) || 15 | [Py](/day-15/day-15.py) (0.001s) | [Py](/day-15/day-15.py) (14.866s) || 24 | [R](/day-24/day-24.r) |  |
 | 7 | [R](/day-03/day-07.r) (5.22s) | [R](/day-07/day-07.r) (0.169s) || 16 | [R](/day-16/day-16.r) | [R](/day-16/day-16.r) || 25 | [R](/day-25/day-03.r) | [R](/day-25/day-25.r) |
 | 8 | [R](/day-03/day-08.r) (0.108s) | [R](/day-08/day-08.r) (0.278s) || 17 | [R](/day-17/day-17.r) | [R](/day-17/day-17.r) ||  |  |  |
-| 9 | [R](/day-03/day-09.r) | [R](/day-09/day-09.r) || 18 | [R](/day-18/day-18.r) | [R](/day-18/day-18.r) ||  |  |  |
-||||||||| Total:| 39m | 21.006s |
+| 9 | [R](/day-03/day-09.r) (0.05s) | [R](/day-09/day-09.r) (0.023s) || 18 | [R](/day-18/day-18.r) | [R](/day-18/day-18.r) || Total:| 39m | 21.456s |
