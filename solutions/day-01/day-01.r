@@ -2,7 +2,6 @@
 # day 1
 
 # part 1
-library(microbenchmark)
 numbers <- scan('day-01.txt')
 
 findProduct <- function(numbers, partTwo = F){
@@ -27,9 +26,9 @@ findProduct <- function(numbers, partTwo = F){
   }
 }
 
-microbenchmark(findProduct(numbers))
+findProduct(numbers)
 
 # part 2
-microbenchmark(findProduct(numbers, partTwo = T))
+findProduct(numbers, partTwo = T)
 
 
