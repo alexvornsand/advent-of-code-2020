@@ -2,8 +2,6 @@
 # day 6
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-06.txt')
 
 countDeclarations <- function(input, partTwo = F){
@@ -18,8 +16,8 @@ countDeclarations <- function(input, partTwo = F){
   return(sum(unlist(sapply(declarations, countDeclarations, partTwo = partTwo))))
 }
 
-microbenchmark(countDeclarations(input))
+countDeclarations(input)
 
 # part 2
-microbenchmark(countDeclarations(input, partTwo = T))
+countDeclarations(input, partTwo = T)
 
