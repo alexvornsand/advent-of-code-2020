@@ -2,8 +2,6 @@
 # day 9
 
 # part 1
-library(microbenchmark)
-
 input <- readLines('day-09.txt')
 
 findEncription <- function(input, partTwo = F){
@@ -43,7 +41,7 @@ findEncription <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(findEncription(input))
+findEncription(input)
 
 # part 2
-microbenchmark(findEncription(input, partTwo = T))
+findEncription(input, partTwo = T)
