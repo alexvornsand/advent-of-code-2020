@@ -2,12 +2,13 @@
 # day 5
 
 # part 1
-library(compositions)
-library(microbenchmark)
-
 input <- readLines('day-05.txt')
 
 findSeatID <- function(input, partTwo = F){
+  unbinary <- function(x){
+    seq <- rev(as.integer(unlist(strsplit(x, split = ''))))
+    return(sum(seq * 2 ^ (0:(length(seq) - 1))))
+  }
   getSeatID <- function(boardingPass){
     row <- unbinary(substring(gsub('B', '1', gsub('F', '0', boardingPass)), 1, 7))
     column <- unbinary(substring(gsub('R', '1', gsub('L', '0', boardingPass)), 8, 10))
@@ -27,7 +28,7 @@ findSeatID <- function(input, partTwo = F){
   }
 }
 
-microbenchmark(findSeatID(input))
+findSeatID(input)
 
 # part 2
-microbenchmark(findSeatID(input, partTwo = T))
+findSeatID(input, partTwo = T)
