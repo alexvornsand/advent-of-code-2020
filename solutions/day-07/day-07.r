@@ -2,7 +2,7 @@
 # day 7
 
 # part 1
-library(tictoc)
+library(microbenchmark)
 
 input <- readLines('day-07.txt')
 
@@ -45,11 +45,7 @@ countBags <- function(input, partTwo = F){
   }
 }
 
-tictoc::tic()
-countBags(input)
-tictoc::toc()
+microbenchmark(countBags(input))
 
 # part 2
-tictoc::tic()
-countBags(input, partTwo = T)
-tictoc::toc()
+microbenchmark(countBags(input, partTwo = T))
